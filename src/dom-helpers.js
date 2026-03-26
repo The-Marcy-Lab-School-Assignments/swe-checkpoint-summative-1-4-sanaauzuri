@@ -32,7 +32,7 @@ export const renderRecipes = (recipes) => {
 
   recipes.forEach((recipe) => {
     const li = document.createElement('li');
-    li.dataset.recipeId = recipe.id;
+    // li.dataset.recipeId = recipe.id;
 
     const img = document.createElement('img');
     img.src = recipe.image;

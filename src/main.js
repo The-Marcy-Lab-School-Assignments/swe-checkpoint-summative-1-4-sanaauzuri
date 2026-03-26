@@ -16,7 +16,6 @@ import { renderRecipes, renderError } from './dom-helpers.js';
 // =============================================
 // TODO 1: The app needs a place to store recipes locally so filters
 // work without re-fetching. Create a RecipeCollection to hold them.
-
 const localStorage = new RecipeCollection('Local Storage')
 // =============================================
 // Part 2: Initialize — Load All Recipes on Page Load
@@ -31,6 +30,7 @@ const main = async () => {
     } else {
       renderRecipes(data);
     }
+
 }
   
 
@@ -41,9 +41,14 @@ const handleSearchSubmit = async (event) => {
   // TODO 3: When the form is submitted, the grid should update to show
   // only recipes matching the search query.
   // Verify: type "pasta" and hit Search — the results should change.
-  const form = document.querySelector('#search-form');
-  const { data, error } = await searchRecipes();
-
+  event.preventDefault();
+  const query = document.querySelector('#search-input');
+  const { data, error } = await searchRecipes(query);
+  if (error) {
+      renderError(error);
+    } else {
+      renderRecipes(data);
+    }
 };
 
 // =============================================
@@ -59,6 +64,14 @@ const handleFilterClick = (event) => {
   // TODO 4: When a filter button is clicked, only recipes of that meal type
   // should appear. "All" should restore the full list.
   // Verify: click each filter — the grid should update and the button should stay highlighted.
+  const filter = btn.dataset.filter
+
+  if (filter === 'All') {
+    renderRecipes(data)
+  } else {
+
+  }
+
 };
 
 // =============================================
@@ -66,6 +79,8 @@ const handleFilterClick = (event) => {
 // =============================================
 // TODO 5: Start the app and connect the event handlers so all three
 // features work: initial load, search, and filtering.
-main()
-handleSearchSubmit()
-handleFilterClick()
+main();
+document.querySelector('#search-form').addEventListener('submit')
+document.querySelector('#filter-buttons').addEventListener('click')
+
+
