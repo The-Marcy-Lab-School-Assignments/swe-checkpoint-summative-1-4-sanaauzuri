@@ -28,6 +28,7 @@ calculateFinalPrice(50, true);
 
 **Your Answer:**
 
+A `ReferenceError` occurs because the variable `finalPrice` is declared within an ***if/else block***.  So, when we return `finalPrice` outside of the ***if/else block***, the variable cannot be accessed/referenced outside of that **block scope**, causing a `ReferenceError`.
 
 ### Question 2: Encapsulation and Private Fields
 
@@ -35,6 +36,7 @@ Explain what **encapsulation** means in object-oriented programming. What does t
 
 **Your Answer:**
 
+**Encapsulation** is when we place data and the methods that use that data into one object. The `#` syntax can be placed in front of a ***property*** or ***method*** to make it private, it's useful when you want to make ***properties***, like passwords and ***methods***, like password validation accessible only within a specific class.
 
 ### Question 3: Flexbox vs. CSS Grid
 
@@ -43,7 +45,8 @@ Explain the difference between **Flexbox** and **CSS Grid** and provide an examp
 **Your Answer:**
 
 
----
+**Flexbox** is a `display` type arranges elements horizontally or vertically (single dimension), while **CSS Grid** is a `display` type that arranges elements in rows and columns
+(two dimensions). On a website, **Flexbox** can be used on a `<nav>` section to align the item horizontally with spacing, and **CSS Grid** can be used as a photo gallery so photos can be shown across rows and columns.
 
 ### Question 4: Async Execution Order
 
@@ -65,6 +68,10 @@ console.log('4');
 ```
 
 **Your Answer:**
+
+The numbers will be logged:
+1:
+
 
 
 ---
