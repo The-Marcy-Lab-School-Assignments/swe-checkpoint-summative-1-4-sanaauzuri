@@ -17,7 +17,7 @@ import { renderRecipes, renderError } from './dom-helpers.js';
 // TODO 1: The app needs a place to store recipes locally so filters
 // work without re-fetching. Create a RecipeCollection to hold them.
 
-
+const localStorage = new RecipeCollection('Local Storage')
 // =============================================
 // Part 2: Initialize — Load All Recipes on Page Load
 // =============================================

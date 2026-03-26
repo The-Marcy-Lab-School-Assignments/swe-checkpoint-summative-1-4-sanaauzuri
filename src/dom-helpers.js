@@ -21,11 +21,12 @@
 //
 // What you'll need: document.querySelector, element.innerHTML, element.textContent,
 // document.createElement, element.setAttribute, element.append, array iteration.
+const recipesList = document.querySelector('#recipes-list');
+const recipeCount = document.querySelector('#recipe-count');
+const errorMessage = document.querySelector('#error-message');
+
 export const renderRecipes = (recipes) => {
   // TODO 1
-  const recipesList = document.querySelector('#recipes-list');
-  const recipeCount = document.querySelector('#recipe-count');
-
   recipesList.innerHTML = '';
   recipeCount.textContent = recipes.length;
 
@@ -61,8 +62,6 @@ export const renderRecipes = (recipes) => {
 // element.classList.add, element.classList.remove.
 export const renderError = (message) => {
   // TODO 2
-  const errorMessage = document.querySelector('#error-message');
-
   if (message) {
     errorMessage.classList.remove('hidden');
     errorMessage.textContent = message;
