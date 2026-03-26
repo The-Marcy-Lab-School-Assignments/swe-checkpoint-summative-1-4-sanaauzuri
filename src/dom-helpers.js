@@ -37,7 +37,7 @@ export const renderRecipes = (recipes) => {
     img.src = recipe.image;
     img.alt = recipe.name;
 
-    const name = document.createElement('name');
+    const name = document.createElement('h3');
     h3.textContent = recipe.name;
 
     const info = document.createElement('p');
@@ -63,7 +63,7 @@ export const renderError = (message) => {
   // TODO 2
   const errorMessage = document.querySelector('#error-message');
 
-  if (errorMessage.classList === 'hidden') {
+  if (message) {
     errorMessage.classList.remove('hidden');
     errorMessage.textContent = message;
   } else {

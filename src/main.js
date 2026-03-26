@@ -41,6 +41,8 @@ const handleSearchSubmit = async (event) => {
   // TODO 3: When the form is submitted, the grid should update to show
   // only recipes matching the search query.
   // Verify: type "pasta" and hit Search — the results should change.
+  const form = document.querySelector('#search-form');
+  const { data, error } = await searchRecipes();
 
 };
 

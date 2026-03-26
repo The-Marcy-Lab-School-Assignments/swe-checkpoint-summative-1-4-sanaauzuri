@@ -34,15 +34,20 @@ class RecipeCollection {
   // rounded to 1 decimal place. Returns 0 if the collection is empty.
   getAverageRating() {
     // TODO 5
-    let totalRatings = this.#recipes.reduce((total, recipe) => total + recipe.rating, 0);
-    return totalRatings
+    if (this.#recipes.length === 0) {
+      return 0
+    } else {
+    const totalRatings = this.#recipes.reduce((total, recipe) => total + recipe.rating, 0);
+    const average = totalRatings / this.#recipes.length
+    return average.toFixed(1)
+    }
   }
 
   // filterByMealType(mealType) — returns only the recipes whose mealType
   // array includes the given type (e.g. 'Breakfast', 'Dinner').
   filterByMealType(mealType) {
     // TODO 6
-    return this.#recipes.filter((recipe) => recipe.mealType === mealType)
+    return this.#recipes.filter((recipe) => recipe.mealType.includes(mealType))
   }
 }
 
