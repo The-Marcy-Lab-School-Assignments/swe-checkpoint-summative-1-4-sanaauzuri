@@ -23,7 +23,7 @@
   --color-error: #c0392b;
   --color-active: #e07b39;
 
-  --font-family: 'Georgia', serif;
+  --font-family: 'Menlo', serif;
   --font-size-base: 1rem;
   --radius: 8px;
   --shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
@@ -96,3 +96,63 @@ button {
    Feel free to add additional styles beyond these
    requirements to make your app look great!
    ============================================= */
+
+/* 1. Header: Use Flexbox to place the <h1> and the
+      search <form> side by side at all screen sizes. */
+
+header {
+  display: flex;
+  flex-direction: row;
+}
+
+/* 2. Mobile default — Main layout: <aside> and
+      #recipes-section should stack vertically by
+      default (no media query needed). */
+
+aside {
+  display: flex;
+  flex-direction: column;
+}
+
+#filter-buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin: 10px;
+}
+#recipes-section {
+  display: flex;
+  flex-direction: column;
+}
+
+/* 3. Mobile default — Recipe grid: #recipes-list
+      should be a 1-column grid by default. Each <li>
+      should look like a card with a border,
+      border-radius, and padding. */
+
+#recipes-list {
+  display: grid;
+}
+
+li {
+  border: 3px solid black;
+  border-radius: 8px;
+  padding: 10px;
+  margin: 10px;
+  list-style: none;
+}
+
+/* 4. Tablet/Desktop (min-width: 768px): Switch
+      <main> to a side-by-side layout (aside next to
+      content). Switch #recipes-list to a multi-column
+      grid (2 or more columns). */
+
+@media (min-width: 768px) {
+  main {
+    display: flex
+  }
+  #recipes-list {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+  }
+}

@@ -10,13 +10,13 @@ import { RecipeCollection } from './RecipeCollection.js';
 import { getAllRecipes, searchRecipes } from './fetch-helpers.js';
 import { renderRecipes, renderError } from './dom-helpers.js';
 
+
 // =============================================
 // Part 1: Create a RecipeCollection Instance
 // =============================================
 // TODO 1: The app needs a place to store recipes locally so filters
 // work without re-fetching. Create a RecipeCollection to hold them.
-
-
+const localRecipes = new RecipeCollection('Local Recipes')
 // =============================================
 // Part 2: Initialize — Load All Recipes on Page Load
 // =============================================
@@ -24,7 +24,16 @@ const main = async () => {
   // TODO 2: When the app loads, the recipe grid should automatically populate.
   // If the fetch fails, an error message should appear instead.
   // Verify: open the browser — recipe cards should appear without any interaction.
-};
+  const { data, error } = await getAllRecipes();
+    if (error) {
+      renderError(error);
+    } else {
+      data.forEach((recipe) => localRecipes.addRecipe(recipe))
+      renderRecipes(localRecipes.getAll())
+    }
+
+}
+  
 
 // =============================================
 // Part 3: Search Form Handler
@@ -33,6 +42,15 @@ const handleSearchSubmit = async (event) => {
   // TODO 3: When the form is submitted, the grid should update to show
   // only recipes matching the search query.
   // Verify: type "pasta" and hit Search — the results should change.
+  event.preventDefault();
+  const input = document.querySelector('#search-input');
+  const query = input.value.trim()
+  const { data, error } = await searchRecipes(query);
+  if (error) {
+      renderError(error);
+    } else {
+      renderRecipes(data);
+    }
 };
 
 // =============================================
@@ -48,6 +66,14 @@ const handleFilterClick = (event) => {
   // TODO 4: When a filter button is clicked, only recipes of that meal type
   // should appear. "All" should restore the full list.
   // Verify: click each filter — the grid should update and the button should stay highlighted.
+  const filter = btn.dataset.filter
+
+  if (filter === 'All') {
+    renderRecipes(localRecipes.getAll())
+  } else {
+    renderRecipes(localRecipes.filterByMealType(filter))
+  }
+
 };
 
 // =============================================
@@ -55,3 +81,8 @@ const handleFilterClick = (event) => {
 // =============================================
 // TODO 5: Start the app and connect the event handlers so all three
 // features work: initial load, search, and filtering.
+main();
+document.querySelector('#search-form').addEventListener('submit', handleSearchSubmit)
+document.querySelector('#filter-buttons').addEventListener('click', handleFilterClick)
+
+
