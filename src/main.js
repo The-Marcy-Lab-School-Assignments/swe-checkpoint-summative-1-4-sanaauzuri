@@ -16,7 +16,7 @@ import { renderRecipes, renderError } from './dom-helpers.js';
 // =============================================
 // TODO 1: The app needs a place to store recipes locally so filters
 // work without re-fetching. Create a RecipeCollection to hold them.
-const localStorage = new RecipeCollection('Local Storage')
+const localRecipes = new RecipeCollection('Local Recipes')
 // =============================================
 // Part 2: Initialize — Load All Recipes on Page Load
 // =============================================
@@ -28,8 +28,8 @@ const main = async () => {
     if (error) {
       renderError(error);
     } else {
-      localStorage.addRecipe(data)
-      renderRecipes(localStorage.getAll());
+      data.forEach((recipe) => localRecipes.addRecipe(recipe))
+      renderRecipes(localRecipes.getAll())
     }
 
 }
@@ -69,9 +69,9 @@ const handleFilterClick = (event) => {
   const filter = btn.dataset.filter
 
   if (filter === 'All') {
-    renderRecipes(localStorage.getAll())
+    renderRecipes(localRecipes.getAll())
   } else {
-    renderRecipes(localStorage.filterByMealType(filter))
+    renderRecipes(localRecipes.filterByMealType(filter))
   }
 
 };

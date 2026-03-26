@@ -39,13 +39,13 @@ export const renderRecipes = (recipes) => {
     img.alt = recipe.name;
 
     const name = document.createElement('h3');
-    h3.textContent = recipe.name;
+    name.textContent = recipe.name;
 
     const info = document.createElement('p');
     info.textContent = `${recipe.cuisine} · ${recipe.difficulty}`;
 
     const rating = document.createElement('p');
-    h3.textContent = `★ ${recipe.rating}`;
+    rating.textContent = `★ ${recipe.rating}`;
 
     li.append(img, name, info, rating);
     recipesList.append(li);
