@@ -62,14 +62,12 @@ export const renderRecipes = (recipes) => {
 export const renderError = (message) => {
   // TODO 2
   const errorMessage = document.querySelector('#error-message');
-  
-  export const renderError = (msg) => {
-  errorMessage.classList.remove('hidden');
-  errorMessage.textContent = msg;
-};
 
-  export const hideError = () => {
-  errorMessage.textContent = '';
-  errorMessage.classList.add('hidden');
-};
+  if (errorMessage.classList === 'hidden') {
+    errorMessage.classList.remove('hidden');
+    errorMessage.textContent = message;
+  } else {
+      errorMessage.textContent = '';
+      errorMessage.classList.add('hidden');
+    }
 };

@@ -69,9 +69,4 @@ console.log('4');
 
 **Your Answer:**
 
-The numbers will be logged:
-1:
-
-
-
 ---

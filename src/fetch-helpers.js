@@ -28,8 +28,9 @@ export const getAllRecipes = async () => {
     }
 
     const data = await response.json();
-    return { data, error: null };
+    return { data: data.recipes, error: null };
   } catch (error) {
+    console.error(error.message)
     return { data: null, error };
   }
 };
@@ -47,8 +48,9 @@ export const searchRecipes = async (query) => {
     }
 
     const data = await response.json();
-    return { data, error: null };
+    return { data: data.recipes, error: null };
   } catch (error) {
+    console.error(error.message)
     return { data: null, error };
   }
 };

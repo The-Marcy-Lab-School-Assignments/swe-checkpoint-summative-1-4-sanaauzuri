@@ -10,6 +10,7 @@ import { RecipeCollection } from './RecipeCollection.js';
 import { getAllRecipes, searchRecipes } from './fetch-helpers.js';
 import { renderRecipes, renderError } from './dom-helpers.js';
 
+
 // =============================================
 // Part 1: Create a RecipeCollection Instance
 // =============================================
@@ -24,7 +25,14 @@ const main = async () => {
   // TODO 2: When the app loads, the recipe grid should automatically populate.
   // If the fetch fails, an error message should appear instead.
   // Verify: open the browser — recipe cards should appear without any interaction.
-};
+  const { data, error } = await getAllRecipes();
+    if (error) {
+      renderError(error);
+    } else {
+      renderRecipes(data);
+    }
+}
+  
 
 // =============================================
 // Part 3: Search Form Handler
@@ -33,6 +41,7 @@ const handleSearchSubmit = async (event) => {
   // TODO 3: When the form is submitted, the grid should update to show
   // only recipes matching the search query.
   // Verify: type "pasta" and hit Search — the results should change.
+
 };
 
 // =============================================
@@ -55,3 +64,6 @@ const handleFilterClick = (event) => {
 // =============================================
 // TODO 5: Start the app and connect the event handlers so all three
 // features work: initial load, search, and filtering.
+main()
+handleSearchSubmit()
+handleFilterClick()
