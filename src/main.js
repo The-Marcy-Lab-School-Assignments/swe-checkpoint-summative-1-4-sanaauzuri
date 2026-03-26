@@ -28,7 +28,8 @@ const main = async () => {
     if (error) {
       renderError(error);
     } else {
-      renderRecipes(data);
+      localStorage.addRecipe(data)
+      renderRecipes(localStorage.getAll());
     }
 
 }
@@ -42,7 +43,8 @@ const handleSearchSubmit = async (event) => {
   // only recipes matching the search query.
   // Verify: type "pasta" and hit Search — the results should change.
   event.preventDefault();
-  const query = document.querySelector('#search-input');
+  const input = document.querySelector('#search-input');
+  const query = input.value.trim()
   const { data, error } = await searchRecipes(query);
   if (error) {
       renderError(error);
@@ -67,9 +69,9 @@ const handleFilterClick = (event) => {
   const filter = btn.dataset.filter
 
   if (filter === 'All') {
-    renderRecipes(data)
+    renderRecipes(localStorage.getAll())
   } else {
-
+    renderRecipes(localStorage.filterByMealType(filter))
   }
 
 };
@@ -80,7 +82,7 @@ const handleFilterClick = (event) => {
 // TODO 5: Start the app and connect the event handlers so all three
 // features work: initial load, search, and filtering.
 main();
-document.querySelector('#search-form').addEventListener('submit')
-document.querySelector('#filter-buttons').addEventListener('click')
+document.querySelector('#search-form').addEventListener('submit', handleSearchSubmit)
+document.querySelector('#filter-buttons').addEventListener('click', handleFilterClick)
 
 
